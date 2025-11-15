@@ -129,7 +129,7 @@ aws logs tail /aws/lambda/$(terraform output -raw image_processor_function_name)
 aws dynamodb scan --table-name $(terraform output -raw dynamodb_table_name)
 
 ### Open dashboard
-`open $(terraform output -raw dashboard_url)`  # Mac
+`open $(terraform output -raw dashboard_url)`  # Mac\
 `xdg-open $(terraform output -raw dashboard_url)`  # Linux
 
 ---
@@ -169,3 +169,10 @@ Solutions:
 - Verify S3 event notification configuration
 - Check Lambda permission for S3
 - Ensure file extension matches filter
+
+---
+
+# What im working on adding next
+- Set up SNS topic for alarm notifications
+- Add github integration
+- API Gateway for direct uploads

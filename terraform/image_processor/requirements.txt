@@ -1,0 +1,6 @@
+# image_processor/requirements.txt
+Pillow==10.1.0
+boto3==1.34.10
+
+# db_writer/requirements.txt
+boto3==1.34.10

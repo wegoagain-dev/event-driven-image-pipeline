@@ -1,0 +1,7 @@
+# Copy this file to terraform.tfvars and customize
+aws_region         = "us-east-1"
+environment        = "dev"
+project_name       = "image-pipeline"
+thumbnail_size     = 200
+enable_monitoring  = true
+log_retention_days = 7

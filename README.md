@@ -5,7 +5,7 @@ This project demonstrates an event driven image pipeline that when a user upload
 ## 🏗 Architecture
 ![arch](/images/event-driven-image-pipeline.svg)
 
-## WHat is event-driven Architecture?
+## What is event-driven Architecture?
 Event-driven architecture is a design pattern where events trigger actions in the system, instead of services calling through each other they can communicate through events.
 
 ## What is S3(simple storage service)?
@@ -16,8 +16,9 @@ S3 events can trigger lambda functions
 Run code without managing servers
 
 ## What is SQS?
-Managed message queue service
+Managed message queue service\
 Dead Letter Queue (DLQ): Where failed messages go
+
 ![](/images/img-1.png)
 
 ## What is DynamoDB?
@@ -26,11 +27,11 @@ NoSQL database (key-value and document store)
 ## What is Serverless? (Not Actually Serverless 😄)
 - Servers still exist
 - You just don't manage them
-- Provider handles: provisioning, scaling, patching
-Good for (event-driven workloads, variable traffic, microservices, rapid development)
+- Provider handles: provisioning, scaling, patching\
+Good for (event-driven workloads, variable traffic, microservices, rapid development)\
 Bad for (long-processes(15min), predictable constant load, websockets(fargate better), large files processing(use ECS))
 
-
+---
 ***Events*** - something that happens in the past (user uploaded an image)\
 ***Producers*** - services that generate events (s3 produces upload event)\
 ***Consumers*** - services that respond to events (lambda functions)\
@@ -54,7 +55,7 @@ Bad for (long-processes(15min), predictable constant load, websockets(fargate be
 
 ---
 
-### Requirements
+## Requirements
 - Terraform 
 - AWS CLI
 - Python 3.11
@@ -68,9 +69,9 @@ cd terraform
 ```
 
 ### Install lambda dependencies
-you will need to install the dependencies for each lambda function, as lambda functions are deployed as zip files which arent packaged with code \
+you will need to install the dependencies for each lambda function, as lambda functions are deployed as zip files which arent packaged with code
 
-cd into each directory and run the docker command (it ensures you install them with python 3.11)\
+cd into each directory and run the docker command (it ensures you install them with python 3.11)
 
 ```bash
 cd image_processor
@@ -91,7 +92,6 @@ docker run --rm -v "$(pwd)":/var/task -w /var/task \
   public.ecr.aws/lambda/python:3.11 \
   install -r requirements.txt -t .
 ```
----
 
 Our project has variables set in `terraform/variables.tf`. These variables can be customised for your project by modifying `terraform.tfvars.example` and renaming it to `terraform.tfvars`.
 
@@ -113,7 +113,7 @@ terraform destroy
 
 ---
 
-### Useful Commands
+## Useful Commands
 (if commands dont work copy the name and paste instead of the function name)
 
 ### Upload file
@@ -129,8 +129,8 @@ aws logs tail /aws/lambda/$(terraform output -raw image_processor_function_name)
 aws dynamodb scan --table-name $(terraform output -raw dynamodb_table_name)
 
 ### Open dashboard
-open $(terraform output -raw dashboard_url)  # Mac
-xdg-open $(terraform output -raw dashboard_url)  # Linux
+`open $(terraform output -raw dashboard_url)`  # Mac
+`xdg-open $(terraform output -raw dashboard_url)`  # Linux
 
 ---
 

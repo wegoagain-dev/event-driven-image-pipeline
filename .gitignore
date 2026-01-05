@@ -51,3 +51,13 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+
+terraform/*/boto3/
+terraform/*/botocore/
+terraform/*/dateutil/
+terraform/*/jmespath/
+terraform/*/s3transfer/
+terraform/*/urllib3/
+terraform/*/*.dist-info/
+terraform/*/bin/
+terraform/*/six.py
